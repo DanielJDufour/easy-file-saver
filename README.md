@@ -40,5 +40,5 @@ saveFile supports the following conversions:
 | Object           | .json  |
 | String           | .html, .txt |
 
-# any formats missing
+# any formats missing?
 Post an issue at https://github.com/DanielJDufour/easy-file-saver or submit a Pull Request!
