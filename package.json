@@ -30,9 +30,7 @@
     "url": "https://github.com/DanielJDufour/easy-file-saver/issues"
   },
   "homepage": "https://github.com/DanielJDufour/easy-file-saver#readme",
-  "dependencies": {
-    "file-saver": "^2.0.5"
-  },
+  "dependencies": {},
   "devDependencies": {
     "ava": "^3.13.0",
     "concurrently": "^5.3.0",
