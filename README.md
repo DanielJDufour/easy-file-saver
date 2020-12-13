@@ -36,7 +36,7 @@ saveFile supports the following conversions:
 | Data URL         | .csv, .jpg, .json, .html, .png, .tsv, .txt, .webp |
 | File             | .csv, .jpg, .json, .html, .png, .tsv, .txt, .webp |
 | HTML Element     | .html  |
-| Image Tag (<img>) | .jpg, .png, .webp |
+| Image | .jpg, .png, .webp |
 | Object           | .json  |
 | String           | .html, .txt |
 
