@@ -21,8 +21,13 @@
     "blob",
     "csv",
     "file",
+    "jpg",
     "json",
-    "save"
+    "png",
+    "save",
+    "tsv",
+    "txt",
+    "webp"
   ],
   "author": "Daniel J. Dufour",
   "license": "CC0-1.0",
