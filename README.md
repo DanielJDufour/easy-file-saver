@@ -7,7 +7,7 @@ npm install easy-file-saver
 ```
 or
 ```html
-<script src="https://unpkg.com/easy-file-saver">
+<script src="https://unpkg.com/easy-file-saver"></script>
 ```
 
 # usage
