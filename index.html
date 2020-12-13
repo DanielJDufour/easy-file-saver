@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+        <script src="https://unpkg.com/easy-script-loader"></script>
+        <script src="./easy-file-saver.js"></script>
+        <script>
+            const onClick = function(id, func) {
+                const element = document.getElementById(id);
+                console.log("found element", element);
+                element.addEventListener('click', function(event) {
+                    try {
+                        console.log("clicked ", element);
+                        func(event);
+                        console.log("ran func");
+                    } catch (error) {
+                        console.error(error);
+                        alert(error.message);
+                    }
+                });
+            };            
+        </script>
+    </head>
+    <body class="container">
+        <h1>Easy File Saver Demonstration</h1>
+        <hr/>
+
+        <h2>Downloading an &lt;img&gt;</h2>
+        <img src="./milkyway.jpg" style="height: 200px; width: 100%">
+        <button id="download-img-as-jpg">Download JPG</button>
+        <button id="download-img-as-png">Download PNG</button>
+        <button id="download-img-as-webp">Download WebP</button>   
+        <script>
+            const img = document.querySelector("img");
+            onClick("download-img-as-jpg", () => saveFile({ data: img, debug: true, filename: "image.jpg" }));
+            onClick("download-img-as-png", () => saveFile({ data: img, debug: true, filename: "image.png" }));
+            onClick("download-img-as-webp", () => saveFile({ data: img, debug: true, filename: "image.webp" }));
+        </script>
+        
+        <h2>Downloading a &lt;canvas&gt;</h2> 
+        <canvas></canvas>
+        <button id="download-jpg">Download JPG</button>
+        <button id="download-png">Download PNG</button>
+        <button id="download-webp">Download WebP</button>
+        <script>
+            const canvas = document.querySelector('canvas');
+            canvas.height = 200;
+            canvas.width = 800;
+            const ctx = canvas.getContext('2d');
+            // fill ctx with white
+            ctx.beginPath();
+            ctx.rect(0, 0, 800, 200);
+            ctx.fillStyle = "white";
+            ctx.fill();
+
+            // draw 30 random circles
+            ctx.fillStyle = "black";
+            for (let i = 0; i < 30; i++) {
+                ctx.beginPath();
+                const x = Math.round(Math.random() * 800);
+                const y = Math.round(Math.random() * 200);
+                const size = Math.round(Math.random() * 75);
+                ctx.lineWidth = Math.round(5 + Math.random() * 10);
+                ctx.strokeStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
+                ctx.arc(x, y, size, 0, 2 * Math.PI);
+                ctx.stroke();
+                ctx.fill();
+            }
+
+            onClick("download-jpg", () => saveFile({ data: canvas, debug: true, filename: "canvas.jpg" }));
+            onClick("download-png", () => saveFile({ data: canvas, debug: true, filename: "canvas.png" }));
+            onClick("download-webp", () => saveFile({ data: canvas, debug: true, filename: "canvas.webp" }));
+        </script>
+        <h2>Downloading Data</h2>
+        <button id="download-json">Download JSON</button>
+        <button id="download-csv">Download CSV</button>
+        <button id="download-matrix">Download Matrix as CSV</button>
+        <button id="download-matrix-as-tsv">Download Matrix as TSV</button>
+        <button id="download-txt">Download TXT</button>
+        <button id="download-html">Download HTML</button>
+        <script>
+            const countries = [
+                { name: "United States of America", abbreviation: "USA" },
+                { name: "Canada", abbreviation: "CA" },
+                { name: "Mexico", abbreviation: "MX" }
+            ];
+            onClick("download-json", () => saveFile({ data: countries, debug: true, filename: "countries.json" }));
+            onClick("download-csv", () => saveFile({ data: countries, debug: true, filename: "countries.csv" }));
+
+            onClick("download-txt", () => saveFile({ data: countries.map(it => it.name + " >> " + it.abbreviation).join("\n"), debug: true, filename: "countries.txt" }));
+
+            const matrix = [
+                [1, 2, 3],
+                [4, 5, 6],
+                [7, 8, 9]
+            ];
+            onClick("download-matrix", () => saveFile({ data: matrix, debug: true, filename: "matrix.csv" }));
+            onClick("download-matrix-as-tsv", () => saveFile({ data: matrix, debug: true, filename: "matrix.tsv" }));
+
+            onClick("download-html", () => saveFile({ data: document.body, debug: true, filename: "countries.html" }));
+
+        </script>
+  
+        <h2>Downloading Random Blobs</h2>
+        <button id="download-docx">Download Microsoft Word Document</button>
+        <script>
+            onClick("download-docx", async () => {
+                await loadScript("https://unpkg.com/docx");
+                const doc = new docx.Document();
+                doc.addSection({
+                    children: [
+                        new docx.Paragraph({
+                            text: "Hello, World!"
+                        })
+                    ]
+                });
+                console.log("doc:", doc);
+                const blob = await docx.Packer.toBlob(doc);
+                console.log({blob});
+                saveFile({ data: blob, debug: true, filename: "test.docx"});
+            })
+        </script>
+
+        <h2>Downloading Files</h2>
+        <input type="file"/>
+        <script>
+            document.querySelector("input").addEventListener("change", event => {
+                console.log({event});
+                const files = event.target.files;
+                const file = files.length > 0 ? files[0] : null;
+                if (file) {
+                    saveFile({ data: file, debug: true, filename: undefined });
+                    saveFile({ data: file, debug: true, filename: "test" });
+                }
+            });
+        </script>
+    </body>
+</html>
