@@ -1,6 +1,9 @@
 # easy-file-saver
 Very Easily Save a File
 
+# demo
+https://danieljdufour.com/easy-file-saver/
+
 # install
 ```bash
 npm install easy-file-saver
