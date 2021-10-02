@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "dev": "concurrently \"npm run serve\" \"npm test\"",
+    "format": "npx prettier --arrow-parens=avoid --print-width=160 --trailing-comma=none --write *.js",
     "serve": "npx live-server --ignore=node_modules",
     "test": "ava --verbose"
   },
@@ -35,9 +36,7 @@
     "url": "https://github.com/DanielJDufour/easy-file-saver/issues"
   },
   "homepage": "https://github.com/DanielJDufour/easy-file-saver#readme",
-  "dependencies": {},
   "devDependencies": {
-    "ava": "^3.13.0",
     "concurrently": "^5.3.0",
     "live-server": "^1.2.1"
   }

@@ -134,5 +134,13 @@
                 }
             });
         </script>
+
+        <h2>Downloading Code</h2>
+        <button id="download-javascript">Download JavaScript</button>
+        <button id="download-python">Download Python</button>
+        <script>
+            onClick("download-javascript", () => saveFile({ data: "console.log('hello, world');\n", debug: true, filename: "hello-world.test.js" }));
+            onClick("download-python", () => saveFile({ data: "print('hello, world');\n", debug: true, filename: "hello_world.py" }));
+        </script>
     </body>
 </html>
