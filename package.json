@@ -9,8 +9,7 @@
   "scripts": {
     "dev": "concurrently \"npm run serve\" \"npm test\"",
     "format": "npx prettier --arrow-parens=avoid --print-width=160 --trailing-comma=none --write *.js",
-    "serve": "npx live-server --ignore=node_modules",
-    "test": "ava --verbose"
+    "serve": "npx live-server --ignore=node_modules"
   },
   "repository": {
     "type": "git",
