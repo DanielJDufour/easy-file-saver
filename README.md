@@ -41,7 +41,7 @@ saveFile supports the following conversions:
 | HTML Element     | .html  |
 | Image | .jpg, .png, .webp |
 | Object           | .json  |
-| String           | .html, .txt |
+| String           | .html, .js, .py, .txt |
 
 # any formats missing?
 Post an issue at https://github.com/DanielJDufour/easy-file-saver or submit a Pull Request!
