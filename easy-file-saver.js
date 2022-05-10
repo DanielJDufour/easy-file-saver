@@ -164,3 +164,11 @@ function saveFile({ data, debug, filename }) {
     throw new Error('[easy-file-saver] unrecognized extension "' + ext + '"');
   }
 }
+
+if (typeof define === "function" && define.amd)
+  define(function () {
+    return saveFile;
+  });
+if (typeof module === "object") module.exports = saveFile;
+if (typeof window === "object") window.saveFile = saveFile;
+if (typeof self === "object") self.saveFile = saveFile;
