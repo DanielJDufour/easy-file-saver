@@ -7,7 +7,7 @@
     "easy-file-saver.js"
   ],
   "scripts": {
-    "dev": "concurrently \"npm run serve\" \"npm test\"",
+    "dev": "npx concurrently \"npm run serve\" \"npm test\"",
     "format": "npx prettier --arrow-parens=avoid --print-width=160 --trailing-comma=none --write *.js",
     "serve": "npx live-server --ignore=node_modules",
     "test": "echo \"no automatic tests\""
@@ -35,9 +35,5 @@
   "bugs": {
     "url": "https://github.com/DanielJDufour/easy-file-saver/issues"
   },
-  "homepage": "https://github.com/DanielJDufour/easy-file-saver#readme",
-  "devDependencies": {
-    "concurrently": "^5.3.0",
-    "live-server": "^1.2.1"
-  }
+  "homepage": "https://github.com/DanielJDufour/easy-file-saver#readme"
 }
