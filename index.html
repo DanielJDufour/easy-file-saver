@@ -118,7 +118,25 @@
                 const blob = await docx.Packer.toBlob(doc);
                 console.log({blob});
                 saveFile({ data: blob, debug: true, filename: "test.docx"});
-            })
+            });
+        </script>
+
+        <h2>Download ArrayBuffer and Uint8Array</h2>
+        <button id="download-pdf-from-array-buffer">Download PDF from ArrayBuffer</button>
+        <script>
+            onClick("download-pdf-from-array-buffer", async () => {
+                const res = await fetch("./image.pdf");
+                const arrayBuffer = await res.arrayBuffer();
+                saveFile({ data: arrayBuffer, debug: true, filename: "test-from-array-buffer.pdf"});
+            });
+        </script>
+        <button id="download-pdf-from-uint8array">Download PDF from Uint8Array</button>
+        <script>
+            onClick("download-pdf-from-uint8array", async () => {
+                const res = await fetch("./image.pdf");
+                const arrayBuffer = await res.arrayBuffer();
+                saveFile({ data: new Uint8Array(arrayBuffer), debug: true, filename: "test-from-uint8-array.pdf"});
+            });
         </script>
 
         <h2>Downloading Files</h2>

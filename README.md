@@ -32,6 +32,7 @@ saveFile({ data: countries.map(c => `${c.name} (${c.abbreviation})`).join("\n"),
 saveFile supports the following conversions:
 | data source      | output formats |
 | ---------------- | -------------- |
+| ArrayBuffer      | .csv, .jpg, .json, .html, .pdf, .png, .tsv, .txt, .webp |
 | Array of Arrays  | .csv, .json, .tsv     |
 | Array of Objects | .csv, .json, .tsv     |
 | Blob             | .csv, .jpg, .json, .html, .png, .tsv, .txt, .webp |
@@ -42,6 +43,7 @@ saveFile supports the following conversions:
 | Image | .jpg, .png, .webp |
 | Object           | .json  |
 | String           | .html, .js, .py, .txt |
+| Uint8Array       | .csv, .jpg, .json, .html, .pdf, .png, .tsv, .txt, .webp |
 
 # any formats missing?
 Post an issue at https://github.com/DanielJDufour/easy-file-saver or submit a Pull Request!

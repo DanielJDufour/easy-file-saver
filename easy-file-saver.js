@@ -25,6 +25,22 @@ function saveFile({ data, debug, filename }) {
 
   const ext = filename.substr(filename.lastIndexOf(".")).toLowerCase();
 
+  const ext_to_mimetype = {
+    csv: "text/csv",
+    geojson: "application/json",
+    jpg: "image/jpeg",
+    json: "application/json",
+    png: "image/png",
+    pdf: "application/pdf",
+    svg: "image/svg+xml",
+    tsv: "text/csv",
+    txt: "text/plain",
+    xlsx: "application/vnd.ms-excel",
+    zip: "application/zip"
+  };
+
+  const mime_type = ext_to_mimetype[ext] || "application/octet-stream";
+
   const A = ({ href, download }) => {
     const a = document.createElement("a");
     a.href = href;
@@ -136,6 +152,11 @@ function saveFile({ data, debug, filename }) {
     URL.revokeObjectURL(url);
   }
 
+  function saveBlobbable({ data, debug, filename, type }) {
+    const blob = new Blob([data], { type: type || mime_type });
+    saveBlob({ data: blob, debug, filename });
+  }
+
   if (ext === ".csv") {
     saveCSV({ data, debug, filename });
   } else if (ext === ".tsv") {
@@ -160,6 +181,8 @@ function saveFile({ data, debug, filename }) {
     saveImageAsWebP({ data, debug, filename });
   } else if (constructorName === "Blob") {
     saveBlob({ data, debug, filename });
+  } else if (constructorName === "ArrayBuffer" || constructorName === "Uint8Array") {
+    saveBlobbable({ data, debug, filename })
   } else {
     throw new Error('[easy-file-saver] unrecognized extension "' + ext + '"');
   }
